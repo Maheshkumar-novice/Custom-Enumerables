@@ -7,6 +7,7 @@ module Enumerable
     for element in self
       yield(element)
     end
+    self
   end
 
   def my_each_with_index
@@ -15,5 +16,6 @@ module Enumerable
       yield(element, index)
       index += 1
     end
+    self
   end
 end
