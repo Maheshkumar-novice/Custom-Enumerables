@@ -5,16 +5,16 @@ require_relative '../custom-enumerables'
 
 puts 'all? vs my_all?'
 numbers = [1, 2, 3, 4, 5]
-puts 'Enumerable#all?'
+puts 'all?'
 p(numbers.all? { |_item| true })
 p(numbers.all? { |_item| false })
 p(numbers.all? { |_item| nil })
 p(numbers.all? {})
 numbers = [1, 1]
 p(numbers.all? { |item| item == 1 })
-
+puts
 numbers = [1, 2, 3, 4, 5]
-puts 'Enumerable#my_all?'
+puts 'my_all?'
 p(numbers.my_all? { |_item| true })
 p(numbers.my_all? { |_item| false })
 p(numbers.my_all? { |_item| nil })
