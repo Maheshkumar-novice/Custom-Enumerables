@@ -56,4 +56,12 @@ module Enumerable
     end
     count
   end
+
+  def my_map
+    mapped_array = []
+    my_each do |element|
+      mapped_array << yield(element)
+    end
+    mapped_array
+  end
 end
