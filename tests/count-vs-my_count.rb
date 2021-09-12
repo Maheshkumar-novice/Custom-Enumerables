@@ -11,6 +11,7 @@ puts 'count'
 p(numbers.count { |_item| true })
 p(numbers.count { |_item| false })
 p(numbers.count { |_item| nil })
+p(numbers.count(&:even?))
 p(numbers.count {})
 p(numbers.count { 1 })
 numbers = [1, 1, 2, 1]
@@ -22,6 +23,7 @@ puts 'my_count'
 p(numbers.my_count { |_item| true })
 p(numbers.my_count { |_item| false })
 p(numbers.my_count { |_item| nil })
+p(numbers.count(&:even?))
 p(numbers.my_count {})
 p(numbers.my_count { 1 })
 numbers = [1, 1, 2, 1]

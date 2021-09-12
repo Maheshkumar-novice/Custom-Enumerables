@@ -11,10 +11,14 @@ puts 'select'
 p(numbers.select { |item| item == 2 })
 p(numbers.select { |item| item })
 p(numbers.select {})
+p(numbers.select(&:positive?))
+p(numbers.select(&:odd?))
 p([].select)
 puts
 puts 'my_select'
 p(numbers.my_select { |item| item == 2 })
 p(numbers.my_select { |item| item })
 p(numbers.my_select {})
+p(numbers.my_select(&:positive?))
+p(numbers.my_select(&:odd?))
 p([].my_select)

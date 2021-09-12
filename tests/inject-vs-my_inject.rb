@@ -13,6 +13,7 @@ p(numbers.inject { |accumulator, item| accumulator * item })
 p(numbers.inject { |_accumulator, _item| 1 })
 p(numbers.inject {})
 p(numbers.inject(10_000) {})
+p((1..10).to_a.inject(&:+))
 p([].inject)
 puts
 puts 'my_inject'
@@ -21,6 +22,7 @@ p(numbers.my_inject { |accumulator, item| accumulator * item })
 p(numbers.my_inject { |_accumulator, _item| 1 })
 p(numbers.my_inject {})
 p(numbers.my_inject(10_000) {})
+p((1..10).to_a.my_inject(&:+))
 p([].my_inject)
 
 puts "\nMutliply_els Method"

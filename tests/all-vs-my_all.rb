@@ -11,6 +11,8 @@ puts 'all?'
 p(numbers.all? { |_item| true })
 p(numbers.all? { |_item| false })
 p(numbers.all? { |_item| nil })
+p(numbers.all?(&:even?))
+p(numbers.all?(&:positive?))
 p(numbers.all? {})
 numbers = [1, 1]
 p(numbers.all? { |item| item == 1 })
@@ -21,6 +23,8 @@ puts 'my_all?'
 p(numbers.my_all? { |_item| true })
 p(numbers.my_all? { |_item| false })
 p(numbers.my_all? { |_item| nil })
+p(numbers.my_all?(&:even?))
+p(numbers.my_all?(&:positive?))
 p(numbers.my_all? {})
 numbers = [1, 1]
 p(numbers.my_all? { |item| item == 1 })
