@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative 'custom-enumerables'
+require_relative '../custom-enumerables'
 
 puts 'each vs my_each'
 numbers = [1, 2, 3, 4, 5]
