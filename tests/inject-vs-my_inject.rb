@@ -3,9 +3,9 @@
 
 require_relative '../custom-enumerables'
 
-puts "====================="
+puts '====================='
 puts 'inject vs my_inject'
-puts "====================="
+puts '====================='
 numbers = [1, 2, 3, 4, 5]
 puts 'inject'
 p(numbers.inject(2) { |accumulator, item| accumulator * item })
@@ -26,6 +26,8 @@ p([].my_inject)
 puts "\nMutliply_els Method"
 def mutliply_els(array)
   p(array.my_inject { |accumulator, item| accumulator * item })
+  p(array.inject { |accumulator, item| accumulator * item })
+  p(array.my_inject(3) { |accumulator, item| accumulator * item })
+  p(array.inject(3) { |accumulator, item| accumulator * item })
 end
-
 mutliply_els([2, 4, 5])

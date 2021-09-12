@@ -3,9 +3,9 @@
 
 require_relative '../custom-enumerables'
 
-puts "====================="
+puts '====================='
 puts 'map vs my_map'
-puts "====================="
+puts '====================='
 numbers = [1, 2, 3, 4, 5]
 puts 'map'
 p(numbers.map { |_item| true })
@@ -16,6 +16,13 @@ p(numbers.map { 1 })
 p(numbers.map { |item| item * item })
 numbers = [1, 1, 2, 1]
 p(numbers.map { |item| item == 1 })
+
+proc = proc { |item| item + 1 }
+p numbers.map(&proc)
+p(numbers.map { |x| x * 12 })
+p(numbers.map { |x| x + 1 }.map(&:even?))
+# p(numbers.map(proc) { |x| x + 2 })
+p(numbers.map { |x| x + 2 })
 p([].map)
 puts
 numbers = [1, 2, 3, 4, 5]

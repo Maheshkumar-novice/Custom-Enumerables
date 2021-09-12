@@ -67,9 +67,10 @@ module Enumerable
   end
 
   def my_inject(accumulator = nil)
-    accumulator = shift if accumulator.nil?
+    clone = self.clone
+    accumulator = clone.shift if accumulator.nil?
 
-    my_each { |element| accumulator = yield(accumulator, element) }
+    clone.my_each { |element| accumulator = yield(accumulator, element) }
     accumulator
   end
 end

@@ -3,9 +3,9 @@
 
 require_relative '../custom-enumerables'
 
-puts "====================="
+puts '====================='
 puts 'select vs my_select'
-puts "====================="
+puts '====================='
 numbers = [1, 2, 3, 4, 5, 1, 2, 2]
 puts 'select'
 p(numbers.select { |item| item == 2 })

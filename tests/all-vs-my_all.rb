@@ -3,9 +3,9 @@
 
 require_relative '../custom-enumerables'
 
-puts "====================="
+puts '====================='
 puts 'all? vs my_all?'
-puts "====================="
+puts '====================='
 numbers = [1, 2, 3, 4, 5]
 puts 'all?'
 p(numbers.all? { |_item| true })

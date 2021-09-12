@@ -3,9 +3,9 @@
 
 require_relative '../custom-enumerables'
 
-puts "====================="
+puts '====================='
 puts 'none? vs my_none?'
-puts "====================="
+puts '====================='
 numbers = [1, 2, 3, 4, 5]
 puts 'none?'
 p(numbers.none? { |_item| true })
