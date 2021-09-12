@@ -48,4 +48,12 @@ module Enumerable
     end
     true
   end
+
+  def my_count
+    count = 0
+    my_each do |element|
+      count += 1 if yield(element)
+    end
+    count
+  end
 end
