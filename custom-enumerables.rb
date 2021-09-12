@@ -57,12 +57,19 @@ module Enumerable
     count
   end
 
-  def my_map
+  def my_map(&proc)
     mapped_array = []
-    my_each do |element|
-      mapped_array << yield(element)
+    if proc
+      my_each do |element|
+        mapped_array << proc.call(element)
+      end
+      return mapped_array
+    elsif block_given?
+      my_each do |element|
+        mapped_array << yield(element)
+      end
+      return mapped_array
     end
-    mapped_array
   end
 
   def my_inject(accumulator = nil)

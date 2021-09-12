@@ -25,3 +25,8 @@ p(numbers.my_map { 1 })
 p(numbers.my_map { |item| item * item })
 numbers = [1, 1, 2, 1]
 p(numbers.my_map { |item| item == 1 })
+
+proc = proc { |item| item + 1 }
+p numbers.my_map(&proc)
+p(numbers.my_map { |x| x * 12 })
+p(numbers.my_map { |x| x + 1 }.my_map(&:even?))
