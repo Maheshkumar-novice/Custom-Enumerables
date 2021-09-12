@@ -64,4 +64,15 @@ module Enumerable
     end
     mapped_array
   end
+
+  def my_inject(accumulator = nil)
+    if accumulator.nil?
+      accumulator = self[0]
+      shift
+    end
+    my_each do |element|
+      accumulator = yield(accumulator, element)
+    end
+    accumulator
+  end
 end
