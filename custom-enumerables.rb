@@ -102,9 +102,9 @@ module Enumerable
     return nil if clone.length.zero? && !block_given? && args.length.zero?
 
     accumulator = args[0] and symbol = args[1] if args.length == 2
-    accumulator = args[0] if args.length == 1 && block_given?
-    symbol = args[0] and accumulator = clone.shift if args.length == 1 && !block_given?
-    accumulator = clone.shift if args.length.zero?
+    accumulator = args[0] and symbol = nil if args.length == 1 && block_given?
+    accumulator = clone.shift and symbol = args[0] if args.length == 1 && !block_given?
+    accumulator = clone.shift and symbol = nil if args.length.zero?
 
     if symbol
       clone.my_each { |element| accumulator = accumulator.send(symbol, element) }
