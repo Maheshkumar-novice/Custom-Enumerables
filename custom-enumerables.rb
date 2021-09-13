@@ -101,17 +101,27 @@ module Enumerable
     count
   end
 
+  # rubocop:disable  Metrics/MethodLength, Metrics/AbcSize
   def my_map(proc = nil)
     mapped_array = []
     if proc
-      my_each { |element| mapped_array << proc.call(element) }
+      if is_a?(Hash)
+        my_each { |key, value| mapped_array << proc.call(key, value) }
+      else
+        my_each { |element| mapped_array << proc.call(element) }
+      end
     elsif block_given?
-      my_each { |element| mapped_array << yield(element) }
+      if is_a?(Hash)
+        my_each { |key, value| mapped_array << yield(key, value) }
+      else
+        my_each { |element| mapped_array << yield(element) }
+      end
     else
       return to_enum(:my_map)
     end
     mapped_array
   end
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
   # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
   def my_inject(*args)

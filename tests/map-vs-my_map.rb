@@ -26,6 +26,8 @@ p(numbers.map { |x| x + 2 })
 p(numbers.map(&:to_s))
 p(numbers.map(&:to_s).map(&:to_sym))
 p([].map)
+p({ 1 => 2, 2 => 3, 3 => 4 }.map { |k, _v| k })
+p({ 1 => 2, 2 => 3, 3 => 4 }.map { |k, v| [k, v] })
 puts
 numbers = [1, 2, 3, 4, 5]
 puts 'my_map'
@@ -47,3 +49,5 @@ p(numbers.my_map { |x| x + 2 })
 p(numbers.my_map(&:to_s))
 p(numbers.my_map(&:to_s).my_map(&:to_sym))
 p([].my_map)
+p({ 1 => 2, 2 => 3, 3 => 4 }.my_map { |k, _v| k })
+p({ 1 => 2, 2 => 3, 3 => 4 }.my_map { |k, v| [k, v] })
