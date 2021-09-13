@@ -19,6 +19,9 @@ p((1..10).inject(:+))
 p((1..10).inject(10, :+))
 p [1].inject
 p [1, 2].inject(1, :+) {}
+p({ 1 => 2, 2 => 3 }.inject(0) { |acc, (key, val)| acc + val + key })
+p({ 1 => 2 }.inject)
+p({}.inject)
 puts
 puts 'my_inject'
 p(numbers.my_inject(2) { |accumulator, item| accumulator * item })
@@ -32,6 +35,9 @@ p((1..10).my_inject(:+))
 p((1..10).my_inject(10, :+))
 p [1].my_inject
 p [1, 2].my_inject(1, :+) {}
+p({ 1 => 2, 2 => 3 }.my_inject(0) { |acc, (key, val)| acc + val + key })
+p({ 1 => 2 }.my_inject)
+p({}.my_inject)
 
 puts "\nMutliply_els Method"
 def mutliply_els(array)
@@ -41,6 +47,5 @@ def mutliply_els(array)
   p(array.inject(3) { |accumulator, item| accumulator * item })
 end
 mutliply_els([2, 4, 5])
-
 # [1,2].inject
 # [1, 2].my_inject

@@ -127,7 +127,7 @@ module Enumerable
   def my_inject(*args)
     clone = self.clone.to_a
     raise LocalJumpError, 'No block given' if clone.length > 1 && !block_given? && args.length.zero?
-    return self[0] if clone.length == 1 && !block_given? && args.length.zero?
+    return clone[0] if clone.length == 1 && !block_given? && args.length.zero?
     return nil if clone.length.zero? && !block_given? && args.length.zero?
 
     accumulator = args[0] and symbol = args[1] if args.length == 2
