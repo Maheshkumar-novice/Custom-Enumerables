@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require 'pry-byebug'
+
 # Custom Enumerables
 module Enumerable
   # rubocop:disable Style/For
@@ -92,11 +94,24 @@ module Enumerable
     mapped_array
   end
 
-  def my_inject(accumulator = nil)
-    clone = self.clone
-    accumulator = clone.shift if accumulator.nil?
+  # rubocop:disable Metrics/*
+  def my_inject(*args)
+    clone = self.clone.to_a
+    raise LocalJumpError, 'No block given' if clone.length > 1 && !block_given? && args.length.zero?
+    return self[0] if clone.length == 1 && !block_given? && args.length.zero?
+    return nil if clone.length.zero? && !block_given? && args.length.zero?
 
-    clone.my_each { |element| accumulator = yield(accumulator, element) }
+    accumulator = args[0] and symbol = args[1] if args.length == 2
+    accumulator = args[0] if args.length == 1 && block_given?
+    symbol = args[0] and accumulator = clone.shift if args.length == 1 && !block_given?
+    accumulator = clone.shift if args.length.zero?
+
+    if symbol
+      clone.my_each { |element| accumulator = accumulator.send(symbol, element) }
+    else
+      clone.my_each { |element| accumulator = yield(accumulator, element) }
+    end
     accumulator
   end
+  # rubocop:enable Metrics/*
 end
