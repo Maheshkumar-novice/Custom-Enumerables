@@ -28,25 +28,45 @@ module Enumerable
   def my_select
     return to_enum(:my_select) unless block_given?
 
-    return_array = []
-    my_each { |element| return_array << element if yield element }
-    return_array
+    selected = []
+    my_each { |element| selected << element if yield element }
+    selected
   end
 
-  def my_all?
-    my_each { |element| return false unless yield(element) }
+  # rubocop:disable Style/CaseEquality
+  def my_all?(pattern = nil)
+    if pattern
+      my_each { |element| return false unless pattern === element }
+    elsif block_given?
+      my_each { |element| return false unless yield(element) }
+    else
+      my_each { |element| return false unless element }
+    end
     true
   end
 
-  def my_any?
-    my_each { |element| return true if yield(element) }
+  def my_any?(pattern = nil)
+    if pattern
+      my_each { |element| return true if pattern === element }
+    elsif block_given?
+      my_each { |element| return true if yield(element) }
+    else
+      my_each { |element| return true if element }
+    end
     false
   end
 
-  def my_none?
-    my_each { |element| return false if yield(element) }
+  def my_none?(pattern = nil)
+    if pattern
+      my_each { |element| return false if pattern === element }
+    elsif block_given?
+      my_each { |element| return false if yield(element) }
+    else
+      my_each { |element| return false if element }
+    end
     true
   end
+  # rubocop:enable Style/CaseEquality
 
   def my_count
     count = 0
