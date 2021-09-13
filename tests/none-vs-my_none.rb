@@ -26,6 +26,10 @@ p(%w[1 1 1].none?(/1/) { |item| item == 1 })
 numbers = [1, 1]
 p(numbers.none? { |item| item == 1 })
 p([nil, nil].none?)
+p({}.none?)
+p({}.none?(1))
+p({}.none? {})
+p({ 1 => 2, 2 => 2 }.none? { |_k, v| v == 2 })
 
 puts
 
@@ -49,3 +53,7 @@ p(%w[1 1 1].my_none?(/1/) { |item| item == 1 })
 numbers = [1, 1]
 p(numbers.my_none? { |item| item == 1 })
 p([nil, nil].my_none?)
+p({}.my_none?)
+p({}.my_none?(1))
+p({}.my_none? {})
+p({ 1 => 2, 2 => 2 }.my_none? { |_k, v| v == 2 })

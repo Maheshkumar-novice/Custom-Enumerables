@@ -26,6 +26,10 @@ p(%w[1 1 1].any?(/1/) { |item| item == 1 })
 numbers = [1, 1]
 p(numbers.any? { |item| item == 1 })
 p([nil, nil].any?)
+p({}.any?)
+p({}.any?(1))
+p({}.any? {})
+p({ 1 => 2, 2 => 2 }.any? { |_k, v| v == 2 })
 
 puts
 
@@ -49,3 +53,7 @@ p(%w[1 1 1].my_any?(/1/) { |item| item == 1 })
 numbers = [1, 1]
 p(numbers.my_any? { |item| item == 1 })
 p([nil, nil].my_any?)
+p({}.my_any?)
+p({}.my_any?(1))
+p({}.my_any? {})
+p({ 1 => 2, 2 => 2 }.my_any? { |_k, v| v == 2 })

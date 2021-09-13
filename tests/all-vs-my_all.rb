@@ -26,6 +26,10 @@ p(%w[1 1 1].all?(/1/) { |item| item == 1 })
 numbers = [1, 1]
 p(numbers.all? { |item| item == 1 })
 p([nil, nil].all?)
+p({}.all?)
+p({}.all?(1))
+p({}.all? {})
+p({ 1 => 2, 2 => 2 }.all? { |_k, v| v == 2 })
 
 puts
 
@@ -49,3 +53,7 @@ p(%w[1 1 1].my_all?(/1/) { |item| item == 1 })
 numbers = [1, 1]
 p(numbers.my_all? { |item| item == 1 })
 p([nil, nil].my_all?)
+p({}.my_all?)
+p({}.my_all?(1))
+p({}.my_all? {})
+p({ 1 => 2, 2 => 2 }.my_all? { |_k, v| v == 2 })

@@ -6,7 +6,7 @@ require 'pry-byebug'
 # Custom Enumerables
 # rubocop:disable Metrics/ModuleLength
 module Enumerable
-  # rubocop:disable Style/For, Metrics/MethodLength
+  # rubocop:disable Style/For, Style/CaseEquality, Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def my_each
     return to_enum(:my_each) unless block_given?
 
@@ -39,7 +39,6 @@ module Enumerable
     end
     self
   end
-  # rubocop:enable Style/For, Metrics/MethodLength
 
   def my_select
     return to_enum(:my_select) unless block_given?
@@ -54,12 +53,15 @@ module Enumerable
     selected
   end
 
-  # rubocop:disable Style/CaseEquality
   def my_all?(pattern = nil)
     if pattern
       my_each { |element| return false unless pattern === element }
     elsif block_given?
-      my_each { |element| return false unless yield(element) }
+      if is_a?(Hash)
+        my_each { |key, value| return false unless yield(key, value) }
+      else
+        my_each { |element| return false unless yield(element) }
+      end
     else
       my_each { |element| return false unless element }
     end
@@ -70,7 +72,11 @@ module Enumerable
     if pattern
       my_each { |element| return true if pattern === element }
     elsif block_given?
-      my_each { |element| return true if yield(element) }
+      if is_a?(Hash)
+        my_each { |key, value| return true if yield(key, value) }
+      else
+        my_each { |element| return true if yield(element) }
+      end
     else
       my_each { |element| return true if element }
     end
@@ -81,13 +87,16 @@ module Enumerable
     if pattern
       my_each { |element| return false if pattern === element }
     elsif block_given?
-      my_each { |element| return false if yield(element) }
+      if is_a?(Hash)
+        my_each { |key, value| return false if yield(key, value) }
+      else
+        my_each { |element| return false if yield(element) }
+      end
     else
       my_each { |element| return false if element }
     end
     true
   end
-  # rubocop:enable Style/CaseEquality
 
   def my_count(item = nil)
     count = 0
@@ -101,7 +110,6 @@ module Enumerable
     count
   end
 
-  # rubocop:disable  Metrics/MethodLength, Metrics/AbcSize
   def my_map(proc = nil)
     mapped_array = []
     if proc
@@ -121,9 +129,7 @@ module Enumerable
     end
     mapped_array
   end
-  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
-  # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
   def my_inject(*args)
     clone = self.clone.to_a
     raise LocalJumpError, 'No block given' if clone.length > 1 && !block_given? && args.length.zero?
@@ -142,6 +148,6 @@ module Enumerable
     end
     accumulator
   end
-  # rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
+  # rubocop:enable Style/For, Style/CaseEquality, Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 end
 # rubocop:enable Metrics/ModuleLength
