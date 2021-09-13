@@ -4,13 +4,20 @@
 require 'pry-byebug'
 
 # Custom Enumerables
+# rubocop:disable Metrics/ModuleLength
 module Enumerable
-  # rubocop:disable Style/For
+  # rubocop:disable Style/For, Metrics/MethodLength
   def my_each
     return to_enum(:my_each) unless block_given?
 
-    for element in self
-      yield(element)
+    if is_a?(Hash)
+      for key, value in self
+        yield(key, value)
+      end
+    else
+      for element in self
+        yield(element)
+      end
     end
     self
   end
@@ -19,19 +26,31 @@ module Enumerable
     return to_enum(:my_each_with_index) unless block_given?
 
     index = 0
-    for element in self
-      yield(element, index)
-      index += 1
+    if is_a?(Hash)
+      for key, value in self
+        yield([key, value], index)
+        index += 1
+      end
+    else
+      for element in self
+        yield(element, index)
+        index += 1
+      end
     end
     self
   end
-  # rubocop:enable Style/For
+  # rubocop:enable Style/For, Metrics/MethodLength
 
   def my_select
     return to_enum(:my_select) unless block_given?
 
-    selected = []
-    my_each { |element| selected << element if yield element }
+    if is_a?(Hash)
+      selected = {}
+      my_each { |key, value| selected[key] = value if yield(key, value) }
+    else
+      selected = []
+      my_each { |element| selected << element if yield element }
+    end
     selected
   end
 
@@ -94,7 +113,7 @@ module Enumerable
     mapped_array
   end
 
-  # rubocop:disable Metrics/*
+  # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
   def my_inject(*args)
     clone = self.clone.to_a
     raise LocalJumpError, 'No block given' if clone.length > 1 && !block_given? && args.length.zero?
@@ -113,5 +132,6 @@ module Enumerable
     end
     accumulator
   end
-  # rubocop:enable Metrics/*
+  # rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
 end
+# rubocop:enable Metrics/ModuleLength
