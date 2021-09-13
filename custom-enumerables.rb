@@ -68,9 +68,15 @@ module Enumerable
   end
   # rubocop:enable Style/CaseEquality
 
-  def my_count
+  def my_count(item = nil)
     count = 0
-    my_each { |element| count += 1 if yield(element) }
+    if item
+      my_each { |element| count += 1 if element == item }
+    elsif block_given?
+      my_each { |element| count += 1 if yield(element) }
+    else
+      my_each { |_element| count += 1 }
+    end
     count
   end
 
