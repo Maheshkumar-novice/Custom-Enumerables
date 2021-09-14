@@ -77,6 +77,7 @@ ruby tests/<file-name>
 ## Acknowledgements
 * [The Odin Project](https://theodinproject.com)
 * [Replit](https://replit.com)
+* [Ruby Guides - alias](https://www.rubyguides.com/2018/11/ruby-alias-keyword/)
   
 [Move To Top](#custom-enumerables)
 
