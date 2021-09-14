@@ -1,5 +1,5 @@
 
-# [Custom-Enumerables](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-programming/lessons/custom-enumerables)
+# [Custom Enumerables](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-programming/lessons/custom-enumerables)
 <about>
 <details open="open">
   <summary>Table Of Contents</summary>
