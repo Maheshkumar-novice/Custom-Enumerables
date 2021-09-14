@@ -23,6 +23,7 @@ p([1, 2, 3, 3, 2].count)
 p({}.count)
 p({ 1 => 2, 2 => 2, 3 => 2 }.count)
 p({ 1 => 2, 2 => 2, 3 => 2 }.count { |_key, value| value == 2 })
+p({ 1 => 2 }.count {})
 puts
 numbers = [1, 2, 3, 4, 5]
 puts 'my_count'
@@ -41,3 +42,4 @@ p([1, 2, 3, 3, 2].my_count)
 p({}.my_count)
 p({ 1 => 2, 2 => 2, 3 => 2 }.my_count)
 p({ 1 => 2, 2 => 2, 3 => 2 }.my_count { |_key, value| value == 2 })
+p({ 1 => 2 }.my_count {})
