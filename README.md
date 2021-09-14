@@ -41,7 +41,7 @@ This project rebuilds some of the methods from Enumerable module of Ruby. Enumer
 * Ruby
   
 ## Test Online
-[Replit](https://replit.com/@MaheshkumarP/Mastermind)
+[Replit](https://replit.com/@MaheshkumarP/Custom-Enumerables)
   
 ## Test Local
 ### prerequisites
