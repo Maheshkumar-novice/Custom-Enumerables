@@ -103,7 +103,11 @@ module Enumerable
     if item
       my_each { |element| count += 1 if element == item }
     elsif block_given?
-      my_each { |element| count += 1 if yield(element) }
+      if is_a?(Hash)
+        my_each { |key, value| count += 1 if yield(key, value) }
+      else
+        my_each { |element| count += 1 if yield(element) }
+      end
     else
       my_each { |_element| count += 1 }
     end
