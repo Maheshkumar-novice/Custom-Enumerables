@@ -1,14 +1,11 @@
 
-# [Title](#)
+# [Custom-Enumerables](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-programming/lessons/custom-enumerables)
 <about>
 <details open="open">
   <summary>Table Of Contents</summary>
   <ol>
     <li>
       <a href="#description">Description</a>
-    </li>
-    <li>
-      <a href="#demo">Demo</a>
     </li>
     <li>
       <a href="#built-with">Built With</a>
@@ -25,18 +22,14 @@
 ## Description
 <Description> 
 
-## Demo
-<!-- ![Example](./assets/example.gif) -->
-</br>
-  
 ## Built With
-* <Thing>
+* Ruby
 
 ## What I Learned
 * <What>
   
 ## Acknowledgements
-* <Ack>
-
-[Move To Top](#title)
+* [The Odin Project](https://theodinproject.com)
+  
+[Move To Top](#custom-enumerables)
 
