@@ -16,6 +16,7 @@ p(numbers.select(&:odd?))
 p([].select)
 p({}.select)
 p({ 1 => 2, 2 => 3, 3 => 3 }.select { |_key, value| value == 3 })
+p(numbers.filter { |item| item == 2 })
 puts
 puts 'my_select'
 p(numbers.my_select { |item| item == 2 })
@@ -26,3 +27,4 @@ p(numbers.my_select(&:odd?))
 p([].my_select)
 p({}.my_select)
 p({ 1 => 2, 2 => 3, 3 => 3 }.my_select { |_key, value| value == 3 })
+p(numbers.my_filter { |item| item == 2 })

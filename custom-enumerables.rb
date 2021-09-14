@@ -41,15 +41,13 @@ module Enumerable
   def my_select
     return to_enum(:my_select) unless block_given?
 
-    if is_a?(Hash)
-      selected = {}
-      my_each { |key, value| selected[key] = value if yield(key, value) }
-    else
-      selected = []
-      my_each { |element| selected << element if yield element }
-    end
+    selected = is_a?(Hash) ? {} : []
+    my_each { |key, value| selected[key] = value if yield(key, value) } if is_a?(Hash)
+    my_each { |element| selected << element if yield element } unless is_a?(Hash)
+
     selected
   end
+  alias my_filter my_select
 
   def my_all?(pattern = nil)
     if pattern
@@ -113,6 +111,7 @@ module Enumerable
     end
     mapped_array
   end
+  alias my_collect my_map
 
   def my_inject(*args)
     clone = self.clone.to_a
@@ -130,6 +129,7 @@ module Enumerable
 
     accumulator
   end
+  alias my_reduce my_inject
   # rubocop:enable Style/For, Style/CaseEquality, Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 end
 # rubocop:enable Metrics/ModuleLength

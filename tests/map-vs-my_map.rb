@@ -29,6 +29,7 @@ p([].map)
 p({ 1 => 2, 2 => 3, 3 => 4 }.map { |k, _v| k })
 p({ 1 => 2, 2 => 3, 3 => 4 }.map { |k, v| [k, v] })
 p([1, [2, 3]].map { |a, b| [a, b] })
+p(numbers.collect { |a| a * 200 })
 puts
 numbers = [1, 2, 3, 4, 5]
 puts 'my_map'
@@ -53,3 +54,4 @@ p([].my_map)
 p({ 1 => 2, 2 => 3, 3 => 4 }.my_map { |k, _v| k })
 p({ 1 => 2, 2 => 3, 3 => 4 }.my_map { |k, v| [k, v] })
 p([1, [2, 3]].my_map { |a, b| [a, b] })
+p(numbers.my_collect { |a| a * 200 })
