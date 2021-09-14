@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'pry-byebug'
-
 # Custom Enumerables
 # rubocop:disable Metrics/ModuleLength
 module Enumerable
@@ -57,11 +55,8 @@ module Enumerable
     if pattern
       my_each { |element| return false unless pattern === element }
     elsif block_given?
-      if is_a?(Hash)
-        my_each { |key, value| return false unless yield(key, value) }
-      else
-        my_each { |element| return false unless yield(element) }
-      end
+      my_each { |key, value| return false unless yield(key, value) } if is_a?(Hash)
+      my_each { |element| return false unless yield(element) } unless is_a?(Hash)
     else
       my_each { |element| return false unless element }
     end
@@ -72,11 +67,8 @@ module Enumerable
     if pattern
       my_each { |element| return true if pattern === element }
     elsif block_given?
-      if is_a?(Hash)
-        my_each { |key, value| return true if yield(key, value) }
-      else
-        my_each { |element| return true if yield(element) }
-      end
+      my_each { |key, value| return true if yield(key, value) } if is_a?(Hash)
+      my_each { |element| return true if yield(element) } unless is_a?(Hash)
     else
       my_each { |element| return true if element }
     end
@@ -87,11 +79,8 @@ module Enumerable
     if pattern
       my_each { |element| return false if pattern === element }
     elsif block_given?
-      if is_a?(Hash)
-        my_each { |key, value| return false if yield(key, value) }
-      else
-        my_each { |element| return false if yield(element) }
-      end
+      my_each { |key, value| return false if yield(key, value) } if is_a?(Hash)
+      my_each { |element| return false if yield(element) } unless is_a?(Hash)
     else
       my_each { |element| return false if element }
     end
@@ -103,11 +92,8 @@ module Enumerable
     if item
       my_each { |element| count += 1 if element == item }
     elsif block_given?
-      if is_a?(Hash)
-        my_each { |key, value| count += 1 if yield(key, value) }
-      else
-        my_each { |element| count += 1 if yield(element) }
-      end
+      my_each { |key, value| count += 1 if yield(key, value) } if is_a?(Hash)
+      my_each { |element| count += 1 if yield(element) } unless is_a?(Hash)
     else
       my_each { |_element| count += 1 }
     end
@@ -117,17 +103,11 @@ module Enumerable
   def my_map(proc = nil)
     mapped_array = []
     if proc
-      if is_a?(Hash)
-        my_each { |key, value| mapped_array << proc.call(key, value) }
-      else
-        my_each { |element| mapped_array << proc.call(element) }
-      end
+      my_each { |key, value| mapped_array << proc.call(key, value) } if is_a?(Hash)
+      my_each { |element| mapped_array << proc.call(element) } unless is_a?(Hash)
     elsif block_given?
-      if is_a?(Hash)
-        my_each { |key, value| mapped_array << yield(key, value) }
-      else
-        my_each { |element| mapped_array << yield(element) }
-      end
+      my_each { |key, value| mapped_array << yield(key, value) } if is_a?(Hash)
+      my_each { |element| mapped_array << yield(element) } unless is_a?(Hash)
     else
       return to_enum(:my_map)
     end
@@ -145,11 +125,9 @@ module Enumerable
     accumulator = clone.shift and symbol = args[0] if args.length == 1 && !block_given?
     accumulator = clone.shift and symbol = nil if args.length.zero?
 
-    if symbol
-      clone.my_each { |element| accumulator = accumulator.send(symbol, element) }
-    else
-      clone.my_each { |element| accumulator = yield(accumulator, element) }
-    end
+    clone.my_each { |element| accumulator = accumulator.send(symbol, element) }  if symbol
+    clone.my_each { |element| accumulator = yield(accumulator, element) } unless symbol
+
     accumulator
   end
   # rubocop:enable Style/For, Style/CaseEquality, Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
