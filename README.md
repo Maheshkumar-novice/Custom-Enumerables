@@ -29,13 +29,13 @@
 This project rebuilds some of the methods from Enumerable module of Ruby. Enumerable module is what gets mixed into the Array and Hash classes (among others) to provide lots of handy iterator methods. Below are the methods rebuilt,
   * `my_each` (default `each`)
   * `my_each_with_index` (default `each_with_index`)
-  * `my_select` (default `select` or `filter`)
+  * `my_select` or `my_filter` (default `select` or `filter`)
   * `my_all?` (default `all?`)
   * `my_any?` (default `any?`)
   * `my_none?` (default `none?`)
   * `my_count` (default `count`)
-  * `my_map` (default `map` or `collect`)
-  * `my_inject` (default `inject` or `reduce`)
+  * `my_map` or `my_collect` (default `map` or `collect`)
+  * `my_inject` or `my_reduce` (default `inject` or `reduce`)
 
 ## Built With
 * Ruby
@@ -69,6 +69,7 @@ ruby tests/<file-name>
 * How to use `is_a?` method
 * How to use `to_enum` method
 * How to `raise` an error
+* How to use `alias` to create alias for methods
 * Gained more experience with `guard clauses`
 * Disable and Enable `rubocop` guides
 * Using variable arguments `(*args)` in ruby methods
